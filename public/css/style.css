@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.survey-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+.scale {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.scale input[type="radio"] {
+    display: none;
+}
+
+.scale label {
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.scale label:hover,
+.scale input[type="radio"]:checked + label {
+    transform: scale(1.1);
+}
+
+/* Estilos específicos para cada valor */
+.scale label[for="rating0"] { background-color: #f44336; color: #fff; }
+.scale label[for="rating1"] { background-color: #e53935; color: #fff; }
+.scale label[for="rating2"] { background-color: #d32f2f; color: #fff; }
+.scale label[for="rating3"] { background-color: #f57c00; color: #fff; }
+.scale label[for="rating4"] { background-color: #fb8c00; color: #fff; }
+.scale label[for="rating5"] { background-color: #ffb300; color: #fff; }
+.scale label[for="rating6"] { background-color: #fdd835; color: #fff; }
+.scale label[for="rating7"] { background-color: #cddc39; color: #fff; }
+.scale label[for="rating8"] { background-color: #9ccc65; color: #fff; }
+.scale label[for="rating9"] { background-color: #8bc34a; color: #fff; }
+.scale label[for="rating10"] { background-color: #4caf50; color: #fff; }
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.box {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+.admin {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+.evaluation {
+    background-color: #FF9800;
+    color: #fff;
+}
+
+.confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+    background-color: #45a049;
+}
