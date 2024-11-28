@@ -1,40 +1,41 @@
 <?php
+    include 'db.php';
     date_default_timezone_set('America/Sao_Paulo');
-    $conexao = json_decode(file_get_contents('../config/config.env'));
-    try {
-        $database = $conexao->database;
-        $dbconn = pg_connect("host=".$database->host." port=".$database->port." dbname=".$database->dbname." user=".$database->user." password=".$database->password);
 
-        if($dbconn) {
-            
-            $dataHora = date('Y-m-d H:i:s');
-
-            $dados = [
-                $_POST['rating'],
-                $dataHora
-            ];
-
-            $result = pg_query_params(
-                $dbconn,
-                "INSERT INTO avaliacao (AVARESPOSTA, AVADATAHORA)
-                 VALUES ($1, $2)",
-                $dados
-            ); 
-
-            if($result) {
-                echo "<script>
-                        alert('Dados inseridos com sucesso.');
-                        location.href = '/php/exercs/bd/01_cadastro_pessoa.html';
-                      </script>";
-            } else {
-                echo "<script>
-                        alert('Houve falha ao processar a inclusão. Tente novamente');
-                      </script>";
-            }
-        }
-    } catch (Exception $e){
+    if(!$_POST['rating']) {
         echo "<script>
-                alert('Houve falha ao processar a inclusão. " . $e->getMessage() . ");
-             </script>";
+        alert('Deve ser informada a avaliação de 0 a 10', location.href = '../public/perguntas.php);
+        </script>";
+    } else {
+        $dataHora = date('Y-m-d H:i:s');
+        $dados = [
+            1,
+            1,
+            $_POST['rating'],
+            $_POST['feedback'],
+            $dataHora
+        ];
+        $result = insert('avaliacao', ["setor_codigo", "dispositivo_codigo", "avaliacao", "feedback", "datahora"], $dados);
+    
+        $perguntas = $_POST['pergunta'];
+        foreach($perguntas as $iPergunta => $sValor) {
+            $dados = [
+                $iPergunta,
+                $result['avaliacao_codigo'],
+                $sValor
+            ];
+            insert('respostasperguntas', ["pergunta_codigo", "avaliacao_codigo", "resposta"], $dados);
+        }
+    
+        if($result) {
+            echo "<script>
+                    alert('O Hospital Regional Alto Vale (HRAV) agradece sua resposta e ela é muito importante para nós, pois nos ajuda a melhorar continuamente nossos serviços.', location.href = '../public/perguntas.php');
+                  </script>";
+        } else {
+            echo "<script>
+                    alert('Houve falha ao processar a inclusão. Tente novamente', location.href = '../public/perguntas.php);
+                    </script>";
+        }
     }
+
 ?>

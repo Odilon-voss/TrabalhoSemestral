@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa de Satisfação</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
 </head>
 <body>
     <div class="survey-container">
@@ -49,10 +48,24 @@
                 <label for="rating10" class="scale-btn">10</label>
             </div>
             
+            <label for="feedback">Deixe seu feedback:</label><br>
+            <textarea id="feedback" name="feedback" rows="2" cols="60"></textarea><br><br>
+        
+            <?php
+            include '../src/db.php';
+            $sHtml = '';
+            $result = select('pergunta', ['*']);
+            foreach($result as $linha) {
+                $idpergunta = $linha['pergunta_codigo'];
+                $sHtml .= "
+                <label for=\"pergunta[$idpergunta]\">".$linha['descricao']."</label><br>
+                <textarea id=\"pergunta[$idpergunta]\" name=\"pergunta[$idpergunta]\" rows=\"2\" cols=\"60\" required></textarea><br><br>";
+            }
+            echo $sHtml;
+            ?>
+
             <button type="submit">Enviar</button>
         </form>
     </div>
-
-    <script src="semestrall.js"></script>
 </body>
 </html>
